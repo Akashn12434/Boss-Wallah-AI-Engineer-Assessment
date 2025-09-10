@@ -1,6 +1,7 @@
 # Codemonk---Backend-Intern-Assignment-
-**Boss Wallah - AI Support Chatbot** is an intelligent virtual assistant designed to help users explore Boss Wallah's course offerings. The chatbot uses advanced AI capabilities to answer course-related questions, provide multilingual responses, suggest career opportunities, and perform web-based searches when necessary. It delivers contextual, conversational answers in the user’s preferred language.
-This project combines **RAG (Retrieval-Augmented Generation)** for course content queries with **AI agents** for general knowledge and location-based queries, providing a seamless educational assistant experience.
+**Boss Wallah - AI Support Chatbot** is an intelligent virtual assistant designed to help users explore Boss Wallah's course offerings. The chatbot uses advanced AI capabilities to answer course-related questions, provide multilingual responses, suggest career opportunities, and perform web-based searches when necessary.
+
+It delivers contextual, conversational answers in the user’s preferred language. This project combines **RAG (Retrieval-Augmented Generation)** for course content queries with **AI agents** for general knowledge and location-based queries, providing a seamless educational assistant experience.
 
 
   ## Features
