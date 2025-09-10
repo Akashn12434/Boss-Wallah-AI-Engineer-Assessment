@@ -3,6 +3,14 @@
 
 It delivers contextual, conversational answers in the user’s preferred language. This project combines **RAG (Retrieval-Augmented Generation)** for course content queries with **AI agents** for general knowledge and location-based queries, providing a seamless educational assistant experience.
 
+## Features
+- 📚 Course Information Retrieval: Answers questions about Boss Wallah courses from the database
+- 📍 Location-Based Search: Finds nearby stores and shops using Google Serper API
+- 🤖 General Queries (ReAct Agent) – Gemini + web tools for knowledge search.
+- 🔄 Smart Query Routing – Classifies and directs queries to the right pipeline.
+- 🌍 Multilingual Support: Detects user's language and responds in the same language (supports like Hindi, Kannada, Malayalam, Tamil, Telugu, and English)
+- ⚡ Conversational Memory: Maintains context across conversations for more natural interactions
+
 
   ## 📊 System Architecture
 
@@ -17,7 +25,6 @@ It delivers contextual, conversational answers in the user’s preferred languag
        │                              │                              │
        ▼                              ▼                              ▼
  Course-related Query        Place/location Query           General Knowledge Query
- (keywords matched)            (keywords matched)            (fallback to agent)
        │                              │                              │
  ┌─────▼─────┐                 ┌──────▼─────┐                ┌───────▼─────┐
  │  RAG Flow │                 │ Serper API │                │ ReAct Agent  │
