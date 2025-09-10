@@ -10,7 +10,7 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_community.utilities import GoogleSerperAPIWrapper
 from langchain_core.tools import Tool
-from langchain_groq import ChatGroq
+
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain.memory import ConversationBufferMemory
@@ -111,6 +111,15 @@ You are "Boss  Wallah Bot," the official AI assistant for Boss Wallah. Your prim
 - If no relevant courses found: "No relevant Boss Wallah courses found."
 - For web search results, be helpful but redirect to course opportunities when possible
 
+5.**Bonus Responses (Predefined):**
+🐄 Multilingual Responses to: “How many cows you will need to start a dairy farm”
+
+- **Telugu**: చిన్న స్థాయి డెయిరీ ఫార్మ్‌ను 5 నుండి 10 గేదెలతో ప్రారంభించవచ్చు, వ్యాపారం పెరిగినప్పుడు మరిన్ని గేదెలను చేర్చవచ్చు.
+- **Hindi**: एक छोटे स्तर का डेयरी फार्म 5 से 10 गायों के साथ शुरू किया जा सकता है, लेकिन जैसे-जैसे व्यवसाय बढ़ता है, और गायें जोड़ी जा सकती हैं।
+- **Kannada**: ಸಣ್ಣ ಮಟ್ಟದ ಡೇರಿ ಫಾರ್ಮ್‌ನ್ನು 5 ರಿಂದ 10 ಹಸುಗಳೊಂದಿಗೆ ಪ್ರಾರಂಭಿಸಬಹುದು, ಆದರೆ ವ್ಯವಹಾರ ಬೆಳೆಯುತ್ತಿದ್ದಂತೆ ಹೆಚ್ಚಿನ ಹಸುಗಳನ್ನು ಸೇರಿಸಬಹುದು.
+- **Tamil**: சிறிய அளவிலான பால் பண்ணையை 5 முதல் 10 மாடுகளுடன் தொடங்கலாம்; தொழில் வளர்ந்தவுடன் மேலும் மாடுகளை சேர்க்கலாம்.
+- **Malayalam**: ചെറിയ തോതിലുള്ള ഡയറി ഫാം 5 മുതൽ 10 പശുക്കളോടെ ആരംഭിക്കാം; ബിസിനസ് വളരുമ്പോൾ കൂടുതൽ പശുക്കളെ ചേർക്കാം.
+
 Context: {context}
 Conversation History: {chat_history}
 """
@@ -141,8 +150,6 @@ def search_places_detailed(query):
     else:
         return "No places found for the given query."
 
-
-
 @st.cache_resource(show_spinner=False)
 def setup_agent():
     llm = init_chat_model(
@@ -161,12 +168,11 @@ def setup_agent():
              description="Useful for finding shops, stores, or locations nearby. Returns detailed information including name, address, rating, and website."),
     ]
     
-
     # Create agent with memory capability
     agent = create_react_agent(llm, tools)
     return agent
 
-# Initialize session state
+
 if "rag_chain" not in st.session_state:
     st.session_state.rag_chain = setup_rag()
 if "agent" not in st.session_state:
@@ -176,29 +182,21 @@ if "chat_history" not in st.session_state:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Add this function to detect language and translate
+
 def detect_and_translate_response(query, english_response):
     """Detect the user's language and translate the English response to that language"""
     try:
-        translator = Translator()
-        
-        # Detect the language of the user query
+        translator = Translator()  
         detected = translator.detect(query)
         user_lang = detected.lang
-        
-        # If it's English, return as is
         if user_lang == 'en':
-            return english_response
-        
-        # Translate the English response to user's language
+            return english_response     
         translated = translator.translate(english_response, src='en', dest=user_lang)
-        return translated.text
-        
+        return translated.text        
     except Exception as e:
         # If translation fails, return English response
         print(f"Translation error: {e}")
         return english_response
-
 
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
@@ -211,15 +209,15 @@ if query := st.chat_input("Ask about courses or the web..."):
 
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            # Convert chat history to LangChain message format
+          
             langchain_messages = []
-            for msg in st.session_state.chat_history[-6:]:  # Keep last 6 messages for context
+            for msg in st.session_state.chat_history[-6:]: 
                 if msg["role"] == "user":
                     langchain_messages.append(HumanMessage(content=msg["content"]))
                 else:
                     langchain_messages.append(AIMessage(content=msg["content"]))
             
-            # ROUTING: course-related vs general
+          
             keywords_course = [
             "opportunity", "opportunities", "career", "education", "training", "study",
             "graduate", "student", "job", "employment", "skill", "educational",
@@ -249,8 +247,6 @@ if query := st.chat_input("Ask about courses or the web..."):
                 st.session_state.chat_history.append({"role": "user", "content": query})
                 st.session_state.chat_history.append({"role": "assistant", "content": answer})
 
-
-
             else:
                 # ---- General queries → Agent ----
                 agent_messages = []
@@ -278,8 +274,6 @@ if query := st.chat_input("Ask about courses or the web..."):
             st.write(answer)
     st.session_state.messages.append({"role": "assistant", "content": answer})
 
-
-
 # ------------------ SIDEBAR ------------------
 with st.sidebar:
     st.header("Try asking:")
@@ -293,7 +287,7 @@ with st.sidebar:
         if st.button(s):
             st.session_state.messages.append({"role": "user", "content": s})
             with st.spinner("Thinking..."):
-                # Convert chat history to LangChain message format
+               
                 langchain_messages = []
                 for msg in st.session_state.chat_history[-6:]:
                     if msg["role"] == "user":
@@ -308,20 +302,19 @@ with st.sidebar:
                     })
                     english_answer = response["answer"]
                     answer = detect_and_translate_response(s, english_answer)
-                    
-                    # Update chat history
+                
                     st.session_state.chat_history.append({"role": "user", "content": s})
                     st.session_state.chat_history.append({"role": "assistant", "content": answer})
                     
                 else:
                     agent_messages = []
-                    for msg in st.session_state.chat_history[-8:]:  # Use last 8 messages for agent
+                    for msg in st.session_state.chat_history[-8:]:  
                         if msg["role"] == "user":
                             agent_messages.append(("user", msg["content"]))
                         else:
                             agent_messages.append(("assistant", msg["content"]))
                     
-                    # Add current query to the agent messages
+             
                     agent_messages.append(("user", s))
                     
                     events = st.session_state.agent.stream(
@@ -333,7 +326,6 @@ with st.sidebar:
                             english_answer = ev["messages"][-1].content
                     answer = detect_and_translate_response(s, english_answer)
                     
-                    # Update chat history for general queries too
                     st.session_state.chat_history.append({"role": "user", "content": s})
                     st.session_state.chat_history.append({"role": "assistant", "content": answer})
                     
