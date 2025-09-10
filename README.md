@@ -42,48 +42,22 @@ The API follows these design patterns:
 - **Utils:** Reusable text processing functions
 - **Tests:** Unit tests for all major functionality
 
-## 🚀 API Endpoints
-File/Folder	Description
-### 🔐 Authentication
-| Method | Endpoint                     | Description                      |
-|--------|------------------------------|----------------------------------|
-| POST   | /api/v1/auth/register/       | Register a new user              |
-| POST   | /api/v1/auth/login/          | Login and get authentication token |
-| POST   | /api/v1/auth/logout/         | Logout (requires authentication) |
+## 📁 Project Structure
 
-### 📝 Paragraphs
-| Method | Endpoint                          | Description                          |
-|--------|-----------------------------------|--------------------------------------|
-| POST   | /api/v1/paragraphs/store/         | Store paragraphs (requires authentication) |
-| GET    | /api/v1/paragraphs/               | List user's paragraphs (requires authentication) |
-| GET    | /api/v1/paragraphs/{id}/          | Get specific paragraph (requires authentication) |
-| DELETE | /api/v1/paragraphs/{id}/          | Delete paragraph (requires authentication) |
-
-### 🔍 Search
-| Method | Endpoint                          | Description                           |
-|--------|-----------------------------------|---------------------------------------|
-| GET    | /api/v1/search/?word={word}       | Search paragraphs by word (requires authentication) |
+| File/Folder           | Description                                      | 
+|-----------------------|--------------------------------------------------|
+| app.py                | Main Streamlit application                       | 
+| courses.csv           |The dataset containing all course information.    |
+| .env                  | Stores the GOOGLE_API_KEY and SERPER_API_KEY     | 
+| requirements.txt      | Python dependencies                              | 
+| chroma_langchain_db/  | Vector database                                  | 
+| venv                  |  Python virtual environment                      | 
+| README.md             |  Project documentation                           | 
+| docs                  |  screenshots                                     | 
 
 ---
 
-# 📁 Project Structure
-
-- **app.py** - Main Streamlit application
-- **courses.csv** - Course dataset (not included in repo)
-- **.env** - Environment variables (not included in repo)
-- **requirements.txt** - Python dependencies
-- **chroma_langchain_db/** - Vector database (auto-created on first run)
-- **docs/** - Documentation folder
-  - **screenshots/** - Application screenshots
-    - query1.png
-    - query2.png
-    - query3.png
-    - query4.png
-- **venv/** - Python virtual environment (auto-created)
-- **README.md** - Project documentation
-## 🚀 Quick Start with Docker
-
-## Setup and Installation
+## 🚀 Setup and Installation
 1. **Clone the repository**:
     ```bash
     git clone https://github.com/Akashn12434/Boss-Wallah-AI-Engineer-Assessment.git
