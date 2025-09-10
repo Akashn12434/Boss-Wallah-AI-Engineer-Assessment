@@ -13,6 +13,32 @@ It delivers contextual, conversational answers in the user’s preferred languag
 - **Predefined Smart Responses:** Supports specialized responses like dairy farming queries in multiple languages.
 - **Streamlit UI:** Interactive chat interface with sidebar shortcuts and clear chat functionality.
 
+                        ┌──────────────────────────┐
+                        │        User Query        │
+                        └─────────────┬────────────┘
+                                      │
+                              Language Detection
+                                      │
+       ┌──────────────────────────────┼──────────────────────────────┐
+       │                              │                              │
+       ▼                              ▼                              ▼
+ Course-related Query        Place/location Query           General Knowledge Query
+ (keywords matched)            (keywords matched)            (fallback to agent)
+       │                              │                              │
+ ┌─────▼─────┐                 ┌──────▼─────┐                ┌───────▼─────┐
+ │  RAG Flow │                 │ Serper API │                │ ReAct Agent  │
+ │ (VectorDB │                 │   (Places) │                │ (Gemini +    │
+ │ + Gemini) │                 └────────────┘                │ Web Tools)   │
+ └─────┬─────┘                                              └───────┬─────┘
+       │                                                              │
+   Response in English -----------------------------------------------┘
+                                      │
+                             Translation Layer
+                         (auto-translate back to user language)
+                                      │
+                            ┌─────────▼─────────┐
+                            │     Final Answer  │
+                            └───────────────────┘
 
 ## Technical Implementation:
 
