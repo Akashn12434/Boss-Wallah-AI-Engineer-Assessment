@@ -1,5 +1,5 @@
-# Codemonk---Backend-Intern-Assignment-
-**Boss Wallah - AI Support Chatbot** is an intelligent virtual assistant designed to help users explore Boss Wallah's course offerings. The chatbot uses advanced AI capabilities to answer course-related questions, provide multilingual responses, suggest career opportunities, and perform web-based searches when necessary.
+# Boss Wallah Chatbot – Smart Support for Learners
+ An intelligent virtual assistant chatbot designed to help users explore Boss Wallah's course offerings. The chatbot uses advanced AI capabilities to answer course-related questions, provide multilingual responses, suggest career opportunities, and perform web-based searches when necessary.
 
 It delivers contextual, conversational answers in the user’s preferred language. This project combines **RAG (Retrieval-Augmented Generation)** for course content queries with **AI agents** for general knowledge and location-based queries, providing a seamless educational assistant experience.
 
@@ -42,15 +42,7 @@ It delivers contextual, conversational answers in the user’s preferred languag
                             └───────────────────┘
 ```
 
-## Technical Implementation:
 
- - Custom User model with UUID primary keys
- - Paragraph and WordIndex models with relationships
- - RESTful API design with proper HTTP methods
- - Input validation and error handling
- - Swagger/OpenAPI documentation
- - Docker and Docker Compose setup
- - Comprehensive test coverage
 
 ## Tech Stack
 - **Framework:** Streamlit for web interface
@@ -61,14 +53,7 @@ It delivers contextual, conversational answers in the user’s preferred languag
 - **Agent Framework:** LangGraph for tool-using AI agent
 - **Backend:** Python
 
-## Architecture
-The API follows these design patterns:
 
-- **Models:** Custom User, Paragraph, WordIndex with proper relationships
-- **Views:** Function-based and class-based views with proper permissions
-- **Serializers:** Comprehensive validation and data transformation
-- **Utils:** Reusable text processing functions
-- **Tests:** Unit tests for all major functionality
 
 ## 📁 Project Structure
 
@@ -81,7 +66,7 @@ The API follows these design patterns:
 | chroma_langchain_db/  | Vector database                                  | 
 | venv                  |  Python virtual environment                      | 
 | README.md             |  Project documentation                           | 
-| docs                  |  screenshots                                     | 
+| docs                  |  screenshots of the Project                      | 
 
 ---
 
