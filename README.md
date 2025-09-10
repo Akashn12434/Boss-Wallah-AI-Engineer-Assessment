@@ -4,15 +4,9 @@
 It delivers contextual, conversational answers in the user’s preferred language. This project combines **RAG (Retrieval-Augmented Generation)** for course content queries with **AI agents** for general knowledge and location-based queries, providing a seamless educational assistant experience.
 
 
-  ## Features
-- **Course Recommendation:** Finds the most relevant courses from Boss Wallah’s database.
-- **Multilingual Support:** Detects user language and translates responses automatically.
-- **Conversational History:** Maintains chat context for better interaction.
-- **Web Search Integration:** Answers general questions using Google search when outside course scope.
-- **Places Search:** Provides detailed information about locations, stores, or markets.
-- **Predefined Smart Responses:** Supports specialized responses like dairy farming queries in multiple languages.
-- **Streamlit UI:** Interactive chat interface with sidebar shortcuts and clear chat functionality.
+  ## 📊 System Architecture
 
+```text
                         ┌──────────────────────────┐
                         │        User Query        │
                         └─────────────┬────────────┘
@@ -39,6 +33,7 @@ It delivers contextual, conversational answers in the user’s preferred languag
                             ┌─────────▼─────────┐
                             │     Final Answer  │
                             └───────────────────┘
+
 
 ## Technical Implementation:
 
