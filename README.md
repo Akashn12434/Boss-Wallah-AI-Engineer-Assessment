@@ -27,10 +27,10 @@ It delivers contextual, conversational answers in the user’s preferred languag
  Course-related Query        Place/location Query           General Knowledge Query
        │                              │                              │
  ┌─────▼─────┐                 ┌──────▼─────┐                ┌───────▼─────┐
- │  RAG Flow │                 │ Serper API │                │ ReAct Agent  │
- │ (VectorDB │                 │   (Places) │                │ (Gemini +    │
- │ + Gemini) │                 └────────────┘                │ Web Tools)   │
- └─────┬─────┘                                              └───────┬─────┘
+ │  RAG Flow │                 │ Serper API │                │ ReAct Agent │
+ │ (VectorDB │                 │   (Places) │                │ (Gemini +   │
+ │ + Gemini) │                 └────────────┘                │ Web Tools)  │
+ └─────┬─────┘                                               └───────┬─────┘
        │                                                              │
    Response in English -----------------------------------------------┘
                                       │
