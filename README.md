@@ -66,21 +66,21 @@ File/Folder	Description
 
 ---
 
-Boss-Wallah-AI-Engineer-Assessment/
-├── app.py                 # Main Streamlit application
-├── courses.csv            # Course dataset (not included in repo)
-├── .env                   # Environment variables (not included in repo)
-├── requirements.txt       # Python dependencies
-├── chroma_langchain_db/   # Vector database (auto-created on first run)
-├── docs/                  # Documentation folder
-│   └── screenshots/       # Application screenshots
-│       ├── query1.png
-│       ├── query2.png
-│       ├── query3.png
-│       └── query4.png
-├── venv/                  # Python virtual environment (auto-created)
-└── README.md              # Project documentation
+# 📁 Project Structure
 
+- **app.py** - Main Streamlit application
+- **courses.csv** - Course dataset (not included in repo)
+- **.env** - Environment variables (not included in repo)
+- **requirements.txt** - Python dependencies
+- **chroma_langchain_db/** - Vector database (auto-created on first run)
+- **docs/** - Documentation folder
+  - **screenshots/** - Application screenshots
+    - query1.png
+    - query2.png
+    - query3.png
+    - query4.png
+- **venv/** - Python virtual environment (auto-created)
+- **README.md** - Project documentation
 ## 🚀 Quick Start with Docker
 
 ## Setup and Installation
