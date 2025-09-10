@@ -25,11 +25,13 @@ It delivers contextual, conversational answers in the user’s preferred languag
  - Comprehensive test coverage
 
 ## Tech Stack
-- **Backend:** Django  with Django REST Framework
-- **Database:** PostgreSQL 17
-- **Authentication:** Token-based authentication
-- **Documentation:** drf-spectacular (Swagger/OpenAPI)
-- **Containerization:** Docker & Docker Compose
+- **Framework:** Streamlit for web interface
+- **LLM:** Google Gemini 2.0 Flash for natural language processing
+- **Vector Database:** ChromaDB for course information retrieval
+- **Embeddings:** HuggingFace Sentence Transformers (all-MiniLM-L6-v2)
+- **Search APIs:** Google Serper for web and place search
+- **Agent Framework:** LangGraph for tool-using AI agent
+- **Backend:** Python
 
 ## Architecture
 The API follows these design patterns:
