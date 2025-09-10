@@ -43,7 +43,7 @@ The API follows these design patterns:
 - **Tests:** Unit tests for all major functionality
 
 ## 🚀 API Endpoints
-
+File/Folder	Description
 ### 🔐 Authentication
 | Method | Endpoint                     | Description                      |
 |--------|------------------------------|----------------------------------|
@@ -66,40 +66,49 @@ The API follows these design patterns:
 
 ---
 
+Boss-Wallah-AI-Engineer-Assessment/
+├── app.py                 # Main Streamlit application
+├── courses.csv            # Course dataset (not included in repo)
+├── .env                   # Environment variables (not included in repo)
+├── requirements.txt       # Python dependencies
+├── chroma_langchain_db/   # Vector database (auto-created on first run)
+├── docs/                  # Documentation folder
+│   └── screenshots/       # Application screenshots
+│       ├── query1.png
+│       ├── query2.png
+│       ├── query3.png
+│       └── query4.png
+├── venv/                  # Python virtual environment (auto-created)
+└── README.md              # Project documentation
+
 ## 🚀 Quick Start with Docker
 
 ## Setup and Installation
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/Akashn12434/Codemonk---Backend-Intern-Assignment-.git
-    cd Codemonk---Backend-Intern-Assignment-
+    git clone https://github.com/Akashn12434/Boss-Wallah-AI-Engineer-Assessment.git
+    cd Boss-Wallah-AI-Engineer-Assessment
     ```
 
-2. **Install dependencies**:
+2. **Create and activate virtual environment**:
+   ```bash
+   python -m venv venv
+   venv\Scripts\activate
+   
+3. **Install dependencies**:
    - Install the required Python packages:   
     ```bash
     pip install -r requirements.txt
     ```
-3. **Running the Application Using Docker Setup**:
-   - Build, run with Docker Compose: 
-    ```bash
-    docker-compose up --build
-    ```
   
-1. **Run Migrations and create superuser**:
-   - Open a new terminal window and run:
+4. **Run the application:**:
     ```bash
-    docker-compose exec web python manage.py makemigrations
-    docker-compose exec web python manage.py migrate
-    docker-compose exec web python manage.py createsuperuser
+    streamlit run app.py
     ```
 
 4.**Access it On running**:
-   - Swagger UI:
+   - Open your browser and go to
    ```bash
-   http://localhost:8000/api/docs/
+   http://localhost:8501
    ```
-   - Admin Interface:
-   ```bash
-   http://localhost:8000/admin/
-   ```
+   
