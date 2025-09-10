@@ -111,8 +111,15 @@ You are "Boss  Wallah Bot," the official AI assistant for Boss Wallah. Your prim
 - If no relevant courses found: "No relevant Boss Wallah courses found."
 - For web search results, be helpful but redirect to course opportunities when possible
 
+**COURSE RESPONSE FORMATTING:**
+- When presenting courses, ALWAYS start with a friendly introductory sentence.
+- Present each course with a clear title and engaging description.
+- Use bullet points for lists of languages and target audiences.
+- Make the response welcoming and enthusiastic about learning opportunities.
+- NEVER just copy-paste raw course data from the context.
+
 5.**Bonus Responses (Predefined):**
-🐄 Multilingual Responses to: “How many cows you will need to start a dairy farm”
+🐄 Multilingual Responses to: "How many cows you will need to start a dairy farm"
 
 - **Telugu**: చిన్న స్థాయి డెయిరీ ఫార్మ్‌ను 5 నుండి 10 గేదెలతో ప్రారంభించవచ్చు, వ్యాపారం పెరిగినప్పుడు మరిన్ని గేదెలను చేర్చవచ్చు.
 - **Hindi**: एक छोटे स्तर का डेयरी फार्म 5 से 10 गायों के साथ शुरू किया जा सकता है, लेकिन जैसे-जैसे व्यवसाय बढ़ता है, और गायें जोड़ी जा सकती हैं।
@@ -221,14 +228,22 @@ if query := st.chat_input("Ask about courses or the web..."):
             keywords_course = [
             "opportunity", "opportunities", "career", "education", "training", "study",
             "graduate", "student", "job", "employment", "skill", "educational",
-            "program", "internship", "income", "course", "language"
+            "program", "internship", "income", "course", "language",
+            "poultry", "dairy", "fishery", "beekeeping"
             ]
 
             keywords_places = [
                 "store", "shop", "buy", "near", "location", "address", "seeds", "seed", "price", "market"
             ]
+            
+            if any(keyword in query.lower() for keyword in keywords_places):
+                english_answer = search_places_detailed(query)  # direct call, not via agent
+                answer = detect_and_translate_response(query, english_answer)
+                
+                st.session_state.chat_history.append({"role": "user", "content": query})
+                st.session_state.chat_history.append({"role": "assistant", "content": answer})
 
-            if any(keyword in query.lower() for keyword in keywords_course):
+            elif any(keyword in query.lower() for keyword in keywords_course):
                 # ---- Course-related query (RAG) ----
                 response = st.session_state.rag_chain.invoke({
                     "input": query,
@@ -240,12 +255,6 @@ if query := st.chat_input("Ask about courses or the web..."):
                 st.session_state.chat_history.append({"role": "user", "content": query})
                 st.session_state.chat_history.append({"role": "assistant", "content": answer})
 
-            elif any(keyword in query.lower() for keyword in keywords_places):
-                english_answer = search_places_detailed(query)  # direct call, not via agent
-                answer = detect_and_translate_response(query, english_answer)
-                
-                st.session_state.chat_history.append({"role": "user", "content": query})
-                st.session_state.chat_history.append({"role": "assistant", "content": answer})
 
             else:
                 # ---- General queries → Agent ----
@@ -295,7 +304,14 @@ with st.sidebar:
                     else:
                         langchain_messages.append(AIMessage(content=msg["content"]))
                 
-                if "course" in s.lower() or "language" in s.lower() or "farm" in s.lower():
+                sidebar_keywords_course = [
+                "opportunity", "opportunities", "career", "education", "training", "study",
+                "graduate", "student", "job", "employment", "skill", "educational",
+                "program", "internship", "income", "course", "language",
+                "poultry",  "fishery", "beekeeping" # <- Now includes "poultry"
+            ]
+
+                if any(keyword in s.lower() for keyword in sidebar_keywords_course):
                     response = st.session_state.rag_chain.invoke({
                         "input": s,
                         "chat_history": langchain_messages
